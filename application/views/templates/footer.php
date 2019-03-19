@@ -38,7 +38,6 @@
 
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/datatables/jquery.dataTables.min.js');?>"></script>
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
-<script src="<?php echo base_url('assets/datatables/datatables/js/jquery.dataTables.min.js')?>"></script>
 
 <script>
 	$(function () {
@@ -195,7 +194,7 @@
 
 
 
-			//datatables
+		//datatables
 		table = $('#table').DataTable({
 
 			"processing": true, //Feature control the processing indicator.
@@ -217,7 +216,51 @@
 			],
 
 		});
+		table_parent = $('#table_parent').DataTable({
 
+			"processing": true, //Feature control the processing indicator.
+			"serverSide": true, //Feature control DataTables' server-side processing mode.
+			"order": [], //Initial no order.
+
+			// Load data for the table's content from an Ajax source
+			"ajax": {
+				"url": "<?php echo site_url('Admin/ajax_listparent')?>",
+				"type": "POST"
+			},
+
+			//Set column definition initialisation properties.
+			"columnDefs": [
+				{
+					"targets": [ -1 ], //last column
+					"orderable": false, //set not orderable
+				},
+			],
+
+		});
+		table_student = $('#table_student').DataTable({
+
+			"processing": true, //Feature control the processing indicator.
+			"serverSide": true, //Feature control DataTables' server-side processing mode.
+			"order": [], //Initial no order.
+
+			// Load data for the table's content from an Ajax source
+			"ajax": {
+				"url": "<?php echo site_url('Admin/ajax_liststudent')?>",
+				"type": "POST"
+			},
+
+			//Set column definition initialisation properties.
+			"columnDefs": [
+				{
+					"targets": [ -1 ], //last column
+					"orderable": false, //set not orderable
+				},
+			],
+
+		});
+
+
+		
 		// Used events
 		var drEvent = $('#input-file-events').dropify();
 
@@ -291,6 +334,61 @@
 		popupDiv.style.display="none";
 	}
 
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+ 
+        $('#master').on('click', function(e) {
+         if($(this).is(':checked',true))  
+         {
+            $(".sub_chk").prop('checked', true);  
+         } else {  
+            $(".sub_chk").prop('checked',false);  
+         }  
+        });
+ 
+        $('.delete_all').on('click', function(e) {
+ 
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });  
+ 
+            if(allVals.length <=0)  
+            {  
+                alert("Please select row.");  
+            }  else {  
+ 
+                var check = confirm("Are you sure you want to delete this row?");  
+                if(check == true){  
+ 
+                    var join_selected_values = allVals.join(","); 
+ 
+                    $.ajax({
+                        url: $(this).attr('Mail/consultation'),
+                        type: 'POST',
+                        data: 'ids='+join_selected_values,
+                        success: function (data) {
+
+                          $(".sub_chk:checked").each(function() {  
+                              $(this).parents("tr").remove();
+                          });
+                          alert("Item Deleted successfully.");
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                            alert(data);
+                          alert(url);
+                        }
+                    });
+ 
+                  $.each(allVals, function( index, value ) {
+                      $('table tr').filter("[data-row-id='" + value + "']").remove();
+                  });
+                }  
+            }  
+        });
+    });
 </script>
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/table-expo/filesaver.min.js');?>"></script>
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/table-expo/xls.core.min.js');?>"></script>

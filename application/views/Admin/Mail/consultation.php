@@ -17,47 +17,51 @@
 			<div class="col-lg-10">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Inbox</h3>
+						<h3 class="box-title">Inbox : </h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body no-padding">
 						<div class="mailbox-controls">
 							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i> </button>
+							<button type="button" class="btn btn-default btn-sm checkbox-toggle"  id="checkboxall"><i class="fa fa-square-o"></i> </button>
 							<div class="btn-group">
-								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+								<button  class="btn btn-default btn-sm delete_all" data-url="/itemDelete" url="/itemDelete" ><i class="fa fa-trash-o"> </i></button>
 								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
 							</div>
 							<!-- /.btn-group -->
-							<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 
 							<!-- /.pull-right -->
 						</div>
 						<div class="table-responsive mailbox-messages">
 							<table class="table table-hover no-wrap table-striped">
+								<thead>
+      <tr>
+          <th width="50px"><input type="checkbox" id="master"></th>
+          <th>Title</th>
+          <th>Description</th>
+      </tr>
+  </thead>
 								<tbody>
+									<?php 
+									
+										foreach ($blogs as $blog) {
+											# code...
+										?>
 
 								<tr>
-									<td><input type="checkbox"></td>
-									<td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-									<td class="mailbox-name">Alexander Pierce</td>
-									<td class="mailbox-subject"><a href="apps-mailbox-detail.html"><b>Lorem ipsum dolor</b> sit amet, solution to consectetur adip iscing elit.</a></td>
-									<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-									<td class="mailbox-date">11 hours ago</td>
+									<td><input type="checkbox"  class="sub_chk" value="'.$blog->id.'"></td>
+									<td class="mailbox-name"><?php echo $blog->recepteur; ?></td>
+									<td class="mailbox-subject"><a href="apps-mailbox-detail.html"><b>Lo</b><?php echo $blog->message; ?>.</a></td>
+									<td class="mailbox-date"><?php echo $blog->date; ?></td>
 								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-									<td class="mailbox-name">Alexander Pierce</td>
-									<td class="mailbox-subject"><a href="apps-mailbox-detail.html">Lorem ipsum dolor sit amet, solution to consectetur adip iscing elit.</a></td>
-									<td class="mailbox-attachment"></td>
-									<td class="mailbox-date">15 hours ago</td>
-								</tr>
+								<?php 
+							}
+
+								?>
 
 
 								</tbody>
-							</table>
+							</table> 
 							<!-- /.table -->
 						</div>
 						<!-- /.mail-box-messages -->
@@ -70,10 +74,8 @@
 							<div class="btn-group">
 								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
 								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
 							</div>
 							<!-- /.btn-group -->
-							<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 
 							<!-- /.pull-right -->
 						</div>
@@ -86,3 +88,6 @@
 	</div>
 	<!-- /.content -->
 </div>
+<script type="text/javascript">
+    
+</script>

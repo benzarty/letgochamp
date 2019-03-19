@@ -5,26 +5,27 @@
 	<!-- Main content -->
 	<div class="content">
 		<div class="card">
+
 			<div class="card-body">
 
 
-		<h3>Teachers List :</h3><div class="text-right"> <button  onclick="add_person()" class="btn btn-rounded btn-danger"><i class="icon-plus"> Add Teacher Hir</i></button></div>
+		<h3>Teachers List :</h3><div class="text-right"> <button  style="margin-top: -62px;" onclick="add_person()" class="btn btn-rounded btn-danger"><i class="icon-plus"> Add Teacher Hir</i></button></div>
 
 
 
 		<table id="table" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th style="width:20px">Picture</th>
-				<th>First Name</th>
-				<th style="width:15px">Last Name</th>
-				<th style="width:15px">Gender</th>
-				<th>Address</th>
+				<!--<div id="uploaded_image"><th style="width:20px">Picture</th></div>-->
+				<th style="width: 15%">First Name</th>
+				<th style="width: 15%">Last Name</th>
+				<th>Gender</th>
+				<th style="width: 10%">Address</th>
 				<th>Date of Birth</th>
 				<th>Phone Number</th>
 
 
-				<th>Action</th>
+				<th style="text-align: center;">Action</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -44,153 +45,72 @@
 	<div class="modal fade" id="modal_form" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title">Person Form</h3>
-					<ol class="breadcrumb bc-colored bg-primary m-b-3">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Library</li>
-					</ol>
-				</div>
-				<div class="modal-body form">
-					<form action="#" id="form" class= enctype="multipart/form-data" >
-						<input type="hidden" value="" name="id"/>
-						<div class="form-body">
-							<div class="form-group">
+				
+<div class="card-header bg-blue">
+              <h4 class="text-white m-b-0">Teacher Data :<button  type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button></h4>
+             
 
-								<input type="file" name="image_file" id="image_file" />
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">First Name</label>
-								<div class="col-md-9">
-									<input name="firstName" placeholder="First Name" class="form-control" type="text">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Last Name</label>
-								<div class="col-md-9">
-									<input name="lastName" placeholder="Last Name" class="form-control" type="text">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Gender</label>
-								<div class="col-md-9">
-									<select name="gender" class="form-control">
-										entries				<option value="">--Select Gender--</option>
-										<option value="male">Male</option>
-										<option value="female">Female</option>
-									</select>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Address</label>
-								<div class="col-md-9">
-									<textarea name="address" placeholder="Address" class="form-control"></textarea>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Phone Number</label>
-								<div class="col-md-9">
-									<input type="number" name="telephone" placeholder="Phone Number" class="form-control"></input>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Date of Birth</label>
-								<div class="col-md-9">
+
+            </div>
+       					<form action="#" id="form" class="" enctype="multipart/form-data" >
+
+				<div class="modal-body form">
+						<input type="hidden" value="" name="id"/>
+					<div class="form-body">
+							<!--<div class="form-group">
+
+								 <input type="file" id="image_file" class="dropify" name="image_file" />
+							</div>-->
+							
+							 <div class="form-group has-feedback">
+                    <input class="form-control" placeholder="First Name" type="text" name="firstName">
+                    <span class="fa fa-user form-control-feedback" aria-hidden="true"></span> </div>
+
+							
+							 <div class="form-group has-feedback">
+                    <input class="form-control" placeholder="Last Name" type="text" name="lastName">
+                    <span class="fa fa-user form-control-feedback" aria-hidden="true"></span> </div>
+							
+							 <div class="form-group row">
+                    <div class="col-md-9">
+                      <select class="form-control custom-select" name="gender">
+                      	<option value="">--Select Gender--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+							
+                  <div class="form-group has-feedback">
+                    <textarea class="form-control" id="placeTextarea" rows="2" placeholder="Address" name="address"></textarea>
+                  </div>
+							
+							 <div class="form-group has-feedback">
+                    <input class="form-control" placeholder="Contact Number" type="number" name="telephone">
+                    <span class="fa fa-phone form-control-feedback" aria-hidden="true"></span> </div>
+              
+
+							<div class="form-group row">
+								<div class="col-md-12">
 									<input name="dob" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
 									<span class="help-block"></span>
 								</div>
 							</div>
+							
+							
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
 
-		<!--	<div class="modal fade" id="modal_form" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-			<div class="row m-t-3">
-				<div class="col-lg-12">
-					<div class="card ">
-						<div class="card-header bg-blue">
-							<h5 class="text-white m-b-0">User Profile</h5>
-						</div>
-						<div class="card-body">
-
-							<form>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">First Name</label>
-											<input class="form-control" placeholder="First Name" type="text">
-											<span class="fa fa-user form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">Last Name</label>
-											<input class="form-control" placeholder="Last Name" type="text">
-											<span class="fa fa-user form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">E-mail</label>
-											<input class="form-control" placeholder="E-mail" type="text">
-											<span class="fa fa-envelope-o form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">Contact Number</label>
-											<input class="form-control" placeholder="Contact Number" type="text">
-											<span class="fa fa-phone form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">Company</label>
-											<input class="form-control" placeholder="Company" type="text">
-											<span class="fa fa-briefcase form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group has-feedback">
-											<label class="control-label">Website</label>
-											<input class="form-control" placeholder="https://" type="text">
-											<span class="fa fa-globe form-control-feedback" aria-hidden="true"></span> </div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group has-feedback">
-											<label class="control-label">Bio</label>
-											<textarea class="form-control" id="placeTextarea" rows="3" placeholder="Bio"></textarea>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group has-feedback">
-											<label class="custom-file center-block block">
-												<input id="file" class="custom-file-input" type="file">
-												<span class="custom-file-control"></span> </label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button type="submit" class="btn btn-success">Submit</button>
-									</div>
-								</div>
-							</form>
-
-						</div>
-					</div>
-				</div>
-			</div></div></div></div>-->
-
-
+		
 
 
 
@@ -201,6 +121,7 @@
 
 	var save_method; //for save method string
 	var table;
+		
 
 
 	function add_person()
@@ -230,12 +151,11 @@
 			{
 				//console.log("".data.firstName);
 				$('[name="id"]').val(data.id);
-				$('[name="picture"]').val(data.picture);
 				$('[name="firstName"]').val(data.firstName);
 				$('[name="lastName"]').val(data.lastName);
 				$('[name="gender"]').val(data.gender);
 				$('[name="address"]').val(data.address);
-				$('[name="telephone"]').val(data.address);
+				$('[name="telephone"]').val(data.telephone);
 
 				$('[name="dob"]').datepicker('update',data.dob);
 				$('#modal_form').modal('show'); // show bootstrap modal when complete loaded
@@ -326,33 +246,31 @@
 
 		}
 	}
-	$(document).ready(function(){
-		$('#form').on('submit', function(e){
-			e.preventDefault();
-			console.log("traiter");
-			if($('#image_file').val() == '')
-			{
-				alert("Please Select the File");
-			}
-			else
-			{
-				console.log("ok");
-				$.ajax({
-                                    url:"<?php echo base_url(); ?>Admin/ajax_upload",
-					//base_url() = http://localhost/tutorial/codeigniter
-					method:"POST",
-					data:new FormData(this),
-					contentType: false,
-					cache: false,
-					processData:false,
-					success:function(data)
-					{
-						//$('#uploaded_image').html(data);
-						console.Log(data);
-					}
-				});
-			}
-		});
-	});
+	/*$(document).ready(function(){
+		 
+      $('#upload_form').on('submit', function(e){  
+           e.preventDefault();  
+           if($('#image_file').val() == '')  
+           {  
+                alert("Please Select the File");  
+           }  
+           else  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>main/ajax_upload",   
+                     //base_url() = http://localhost/tutorial/codeigniter  
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                          $('#uploaded_image').html(data);  
+                     }  
+                });  
+           }  
+      });  
+ }); */
 
 </script>
