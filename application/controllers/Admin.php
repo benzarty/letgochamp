@@ -34,6 +34,8 @@ class Admin extends CI_Controller {
 			$this->load->helper(array('form', 'url'));
 			$this->load->library('upload');
 			$this->load->model('mail_model' , 'm');
+			$this->load->model('Payment_model' , 'pai');
+
 
 
 		}
@@ -226,7 +228,8 @@ class Admin extends CI_Controller {
 			$userdata=$this->userdata();
 
 			$this->load->view('templates/header',array("user"=>$userdata));
-		$this->load->view('Admin/Paiement/Listerdepaiement');
+			$data['bs'] = $this->pai->getRecords();
+			$this->load->view('Admin/Paiement/Listerdepaiement', $data);
 		$this->load->view('templates/footer');
 
 
