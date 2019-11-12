@@ -1,4 +1,7 @@
 <html>
+<link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/style.css">
 <head>
 <title>Login Page</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/login/style.css');?>">
@@ -21,7 +24,12 @@
         </form>
         
     </div>
+
+
 </div>
+
+
+
 
 </body>
 </head>

@@ -1,9 +1,4 @@
 <div class="content-wrapper">
-	<!-- Content Header (Page header) -->
-	<div class="content-header sty-one">
-
-	</div>
-
 	<!-- Main content -->
 	<div class="content">
 		<div class="card">
@@ -15,48 +10,87 @@
 
 					<div class="col-lg-12 m-b-2">
 
-						<div class="table-responsive">
+						<div class="table-responsive table-bordered table-hover">
 							<table class="table">
 								<thead class="bg-danger text-white">
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">First Name</th>
-									<th scope="col">Last Name</th>
-									<th scope="col">Username</th>
-									<th scope="col">Action</th>
+									<th scope="col"> Full Name Teacher </th>
+
+									<th scope="col">Started Day</th>
+									<th scope="col">Finished Day</th>
+									<th scope="col">Reason</th>
+									<th scope="col">Date Of Publish</th>
+									<th scope="col" style="padding-left: 110px">Action</th>
+
+
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdooo</td>
-									<td><a  href="<?php echo base_url('Admin/detailcongee');?>" class="btn btn-outline-danger"><i class="icon-plus"> Add Student Hir</i></a></td>
+								<?php
 
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-									<td> <button type="button" class="btn btn-outline-danger">View Detail</button>
+								foreach ($requests as $req) {
+									# code...
+									$t=$this->db->get_where('teacher',array('id'=>$req->idteacher))->first_row();
 
-								</tr>
+									?>
 								<tr>
-									<th scope="row">3</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-									<td> <button type="button" class="btn btn-outline-danger">View Detail</button>
+
+									<td> <?php echo $t->firstName.' '. $t->lastName; ?></td>
+									<td> <?php echo $req->datedebut; ?></td>
+									<td> <?php echo $req->datefin; ?></td>
+
+									<td> <?php echo $req->raison; ?></td>
+									<td> <?php echo $req->datedepostulation; ?></td>
+
+									<td>
+										
+
+		<form method="post" enctype="multipart/form-data" action="<?php echo base_url('Admin/acceptconge')?>">
+										<input type="hidden" name="id" value="<?php echo $req->id; ?>">
+									  <input type="hidden" name="idteacher" value="<?php echo $t->id; ?>">
+
+
+
+
+
+
+<div style="float: left;">	<button type="submit" name="submit" class="btn btn-outline-success"><i class="fa fa-check"></i>Accept     </button>
+
+</div>		
+</form>
+		<form method="post" enctype="multipart/form-data" action="<?php echo base_url('Admin/deleteconge')?>">
+			<input type="hidden" name="id" value="<?php echo $req->id; ?>">
+			<input type="hidden" name="idteacher" value="<?php echo $t->id; ?>">
+
+
+<div>	<button type="submit" name="submit" class="btn btn-outline-danger"><i class="fa fa-close"></i>Decline  </button></div>
+</form>
+
+
+
 									</td>
+
+
 								</tr>
+									<?php
+								}
+
+								?>
+
 								</tbody>
 							</table>
-						</div></div></div></div></div></div>
+					</div></div></div></div></div></div>
+					<script type="text/javascript">
+						
 
+		
+
+
+					</script>
 
 
 
 
 </div>
+
+

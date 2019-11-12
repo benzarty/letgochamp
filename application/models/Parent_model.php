@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Parent_model extends CI_Model {
 
 	var $table = 'parent';
-	var $column_order = array('firstname','lastname','gender','address','dob','telephone',null); //set column field database for datatable orderable
+	var $column_order = array('image','firstname','lastname','gender','address','dob','telephone',null); //set column field database for datatable orderable
 	var $column_search = array('firstname','lastname','address'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('id' => 'desc'); // default order
 
@@ -102,6 +102,35 @@ class Parent_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete($this->table);
 	}
+	function can_login($username, $password)
+	{
+		$this->db->where('username', $username);
+		$this->db->where('password', $password);
+		$query = $this->db->get('parent');
+		//SELECT * FROM users WHERE username = '$username' AND password = '$password'
+		if($query->num_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+public function getall()
+	{            
+
+			$query = $this->db->query("Select * from parent");
+
+				return $query->result();
+
+	}
+	public function searchmail($mail,$username)
+	{
+					$query = $this->db->query("Select * from parent where mail='$mail' or username='$username'");
+									return $query->result();
 
 
+	}
+	
 }

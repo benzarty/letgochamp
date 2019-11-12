@@ -23,23 +23,28 @@
 					<div class="box-body no-padding">
 						<div class="mailbox-controls">
 							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"  id="checkboxall"><i class="fa fa-square-o"></i> </button>
 							<div class="btn-group">
-								<button  class="btn btn-default btn-sm delete_all" data-url="/itemDelete" url="/itemDelete" ><i class="fa fa-trash-o"> </i></button>
+								<button  class="btn btn-default btn-sm" name="delete_all" id="delete_all"" ><i class="fa fa-trash-o"> </i></button>
 								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
 							</div>
 							<!-- /.btn-group -->
 
 							<!-- /.pull-right -->
 						</div>
-						<div class="table-responsive mailbox-messages">
-							<table class="table table-hover no-wrap table-striped">
+						<div class="table-responsive">
+							<table class="table table-bordered">
 								<thead>
       <tr>
-          <th width="50px"><input type="checkbox" id="master"></th>
-          <th>Title</th>
-          <th>Description</th>
-      </tr>
+          <th width="50px"></th>
+          <th>Subject</th>
+
+		  <th>Mail Sender</th>
+		  <th>Description</th>
+		  <th>Date</th>
+
+
+
+	  </tr>
   </thead>
 								<tbody>
 									<?php 
@@ -49,10 +54,14 @@
 										?>
 
 								<tr>
-									<td><input type="checkbox"  class="sub_chk" value="'.$blog->id.'"></td>
-									<td class="mailbox-name"><?php echo $blog->recepteur; ?></td>
-									<td class="mailbox-subject"><a href="apps-mailbox-detail.html"><b>Lo</b><?php echo $blog->message; ?>.</a></td>
-									<td class="mailbox-date"><?php echo $blog->date; ?></td>
+									<td><input type="checkbox" class="delete_checkbox " value="<?php echo $blog->id; ?>"></td>
+									<td><?php echo $blog->sujet; ?></td>
+									<td><?php echo $blog->destinataire; ?></td>
+									<td><?php echo $blog->message; ?></td>
+									<td><?php echo $blog->date; ?></td>
+									<td><a type="button" class="btn btn-outline-secondary" href="<?php echo base_url('Admin/detailmail/'.$blog->id);?>"> See Message</a></td>
+
+
 								</tr>
 								<?php 
 							}
@@ -68,26 +77,18 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer no-padding m-b-2">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i> </button>
-							<div class="btn-group">
-								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-								<button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-							</div>
-							<!-- /.btn-group -->
 
-							<!-- /.pull-right -->
-						</div>
 					</div>
 				</div>
 				<!-- /. box -->
 			</div>
+
 		</div>
 		<!-- Main row -->
 	</div>
+
+
+
 	<!-- /.content -->
 </div>
-<script type="text/javascript">
-    
-</script>
+

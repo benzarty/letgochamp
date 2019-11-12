@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Student_model extends CI_Model {
 
 	var $table = 'student';
-	var $column_order = array('firstname','lastname','gender','address','dob',null); //set column field database for datatable orderable
+	var $column_order = array('image','firstname','lastname','gender','address','dob',null,null); //set column field database for datatable orderable
 	var $column_search = array('firstname','lastname','address'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('id' => 'desc'); // default order
 
@@ -102,6 +102,148 @@ class Student_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete($this->table);
 	}
+	function get_datatabless($id=null)
+	{
+		$this->_get_datatables_query();
+		if($_POST['length'] != -1)
+			$this->db->limit($_POST['length'], $_POST['start']);
+		$this->db->where('idclasse',$id);
 
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_datatablesp($id=null)
+	{
+		$this->_get_datatables_query();
+		if($_POST['length'] != -1)
+			$this->db->limit($_POST['length'], $_POST['start']);
+		$this->db->where('idparent',$id);
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function updateclasseetudiant($id)
+	{
+
+
+		$this->db->set('idclasse', NULL);
+		$this->db->where('id', $id);
+		$this->db->update('student');
+		return true ;
+
+
+	}
+	public function updateparentetudiant($id)
+	{
+
+
+		$this->db->set('idparent', NULL);
+		$this->db->where('id', $id);
+		$this->db->update('student');
+		return true ;
+
+
+	}
+	public function getavailable()
+	{
+		$query = $this->db->query("Select * from student where idclasse is NULL ");
+		return $query->result();
+
+	}
+	public function getavailableparent()
+	{
+		$query = $this->db->query("Select * from student where idparent is NULL ");
+		return $query->result();
+	}
+
+	function affectation($id)
+	{
+		$this->db->set('idclasse',$id);
+		$this->db->where('id', $id);
+		$this->db->update('student');
+		return true ;
+	}
+
+	function affectationparent($id)
+	{
+		$this->db->set('idparent',$id);
+		$this->db->where('id', $id);
+		$this->db->update('student');
+		return true ;
+	}
+
+	function acceptstudent($idstudent,$id)
+	{
+		$this->db->set('idclasse', $id);
+		$this->db->where('id', $idstudent);
+		$this->db->update('student');
+		return true;
+
+	}
+
+	function acceptstudentparent($idstudent,$id)
+	{
+		$this->db->set('idparent', $id);
+		$this->db->where('id', $idstudent);
+		$this->db->update('student');
+		return true;
+
+	}
+	public function get_by_id_classe($id)
+	{
+		$query = $this->db->query("Select * from student where idclasse =$id ");
+		return $query->result();
+	}
+	public function get_by_id_st($id)
+	{
+		$query = $this->db->query("Select * from student where idparent =$id ");
+		return $query->result();
+	}
+	public function getall($id)
+	{
+		$query = $this->db->query("Select * from student where id =$id ");
+		return $query->result();
+	}
+
+public function get_by_id_pr($id)
+	{
+		$query = $this->db->query("Select idparent from student where id =$id");
+		return $query->row();
+	}
+	public function getid($id)
+	{
+		$query = $this->db->query("Select * from note where id =$id");
+		return $query->row();
+	}
+
+
+		public function get_by_id_classesss($id,$datee)
+	{
+				$d=date("Y-m-d",strtotime($datee));
+
+		$query = $this->db->query("Select * from student where idclasse =$id and id not in (select id_student from presence  where datee= '$datee')");
+		return $query->result();
+	}
+
+	public function getidstudent($id)
+	{
+		$query = $this->db->query("Select * from student where idparent =$id");
+		return $query->row();
+	}
+	public function getallrow($id)
+	{
+		$query = $this->db->query("Select * from student where id =$id ");
+		return $query->row();
+	}
+
+public function countnumberstudents()
+	{
+
+		$query = $this->db->query("Select count(*) as n from student");
+								return $query->row();
+	}
 
 }
+	

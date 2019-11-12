@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Teacher_model extends CI_Model {
 
 	var $table = 'teacher';
-	var $column_order = array('firstname','lastname','gender','address','dob','telephone',null); //set column field database for datatable orderable
+	var $column_order = array('image','firstname','lastname','gender','address','dob','telephone',null); //set column field database for datatable orderable
 	var $column_search = array('firstname','lastname','address'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('id' => 'desc'); // default order
 
@@ -101,6 +101,61 @@ class Teacher_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete($this->table);
 	}
+	function can_login($username, $password)
+	{
+		$this->db->where('username', $username);
+		$this->db->where('password', $password);
+		$query = $this->db->get('teacher');
+		//SELECT * FROM users WHERE username = '$username' AND password = '$password'
+		if($query->num_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function form_insert($data){
+// Inserting in Table(students) of Database(college)
+		$this->db->insert('congee', $data);
+	}
+	public function get_related_class($id)
+	{		$this->db->from('classeteacher');
+		$this->db->where('idteacher',$id);
+		$query = $this->db->get();
+		return $query->result();
 
+	}
+	public function get_related_matiere($id)
+	{		$this->db->from('teachermatiere');
+		$this->db->where('idteacher',$id);
+		$query = $this->db->get();
+		return $query->result();
+
+
+
+	}
+
+	public function getids()
+	{
+
+			$query = $this->db->query("Select id from teacher");
+						return $query->result();
+	}
+	public function getall()
+	{            
+
+			$query = $this->db->query("Select * from teacher");
+
+				return $query->result();
+
+	}
+	public function countnumberteacher()
+	{
+
+		$query = $this->db->query("Select count(*) as n from teacher");
+								return $query->row();
+	}
 
 }

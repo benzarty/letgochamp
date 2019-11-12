@@ -54,4 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['itemDelete']['post'] = "Admin/deleteAll";
 $route['Admin'] = "Admin";
+$route['Admin/deleteannonce/(:any)'] = 'Admin/deleteannonce/$1';
+
+
 

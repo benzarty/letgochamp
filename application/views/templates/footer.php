@@ -121,61 +121,9 @@
 	var frmMobile = $('#frmMobile');
 	var frmMobileValidator = frmMobile.validate();
 
-	$('#demo1').steps({
-		onChange: function (currentIndex, newIndex, stepDirection) {
-			console.log('onChange', currentIndex, newIndex, stepDirection);
-			// tab1
-			if (currentIndex === 0) {
-				if (stepDirection === 'forward') {
-					var valid = frmRes.valid();
-					return valid;
-				}
-				if (stepDirection === 'backward') {
-					frmResValidator.resetForm();
-				}
-			}
-
-			// tab2
-			if (currentIndex === 1) {
-				if (stepDirection === 'forward') {
-					var valid = frmInfo.valid();
-					return valid;
-				}
-				if (stepDirection === 'backward') {
-					frmInfoValidator.resetForm();
-				}
-			}
-
-			// tab3
-			if (currentIndex === 2) {
-				if (stepDirection === 'forward') {
-					var valid = frmLogin.valid();
-					return valid;
-				}
-				if (stepDirection === 'backward') {
-					frmLoginValidator.resetForm();
-				}
-			}
-
-			// tab4
-
-
-			return true;
-
-		},
-		onFinish: function () {
-			alert('Wizard Completed');
-		}
-	});
-</script>
-<script>
-	$('#demo').steps({
-		onFinish: function () {
-			alert('Wizard Completed');
-		}
-	});
 
 </script>
+
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/dropify/dropify.min.js');?>"></script>
 <script>
 	$(document).ready(function(){
@@ -216,6 +164,7 @@
 			],
 
 		});
+
 		table_parent = $('#table_parent').DataTable({
 
 			"processing": true, //Feature control the processing indicator.
@@ -258,7 +207,246 @@
 			],
 
 		});
+			table_class = $('#table_class').DataTable({
 
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listclass')?>",
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+			var ids=null;
+			<?php
+			if(isset($st)){
+				$ids=$st->id;
+			}
+			else{
+				$ids=null;
+
+			}
+			?>
+			table_dossier = $('#table_dossier').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listdossier/'.$ids ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+			var idt=null;
+			<?php
+			if(isset($te)){
+				$idt=$te->id;
+			}
+			else{
+				$idt=null;
+
+			}
+			?>
+			table_dossier_t = $('#table_dossier_t').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listdossier_t/'.$idt ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+
+
+			var idss=null;
+			<?php
+			if(isset($stt)){
+				$idss=$stt->id;
+			}
+			else{
+				$idss=null;
+
+			}
+			?>
+			table_etudiantparclass = $('#table_etudiantparclass').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listetudiantparclasse/'.$idss ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+			var idss=null;
+			<?php
+			if(isset($stt)){
+				$idss=$stt->id;
+			}
+			else{
+				$idss=null;
+
+			}
+			?>
+			table_etudiantparparent = $('#table_etudiantparparent').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listetudiantparparent/'.$idss ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+			var idses=null;
+			<?php
+			if(isset($sttt)){
+				$idses=$st->idddd;
+			}
+			else{
+				$idses=null;
+
+			}
+			?>
+			table_ajouteleve = $('#table_ajouteleve').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listerelevevailble/'.$idses ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+			var idsesp=null;
+			<?php
+			if(isset($sttt)){
+				$idsesp=$st->idddd;
+			}
+			else{
+				$idsesp=null;
+
+			}
+			?>
+			table_ajouteleveparent = $('#table_ajouteleveparent').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listerelevevailbleparent/'.$idsesp ) ?>" ,
+					"type": "POST"
+				},
+
+				//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
+
+			var idseses=null;
+			<?php
+			if(isset($teacherid)){
+				$idseses=$teacherid;
+			}
+			else{
+				$idseses=null;
+
+			}
+			?>
+			table_affectationteachertoclass = $('#table_affectationteachertoclass').DataTable({
+
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"order": [], //Initial no order.
+				// Load data for the table's content from an Ajax source
+				"ajax": {
+					"url": "<?php echo site_url('Admin/ajax_listerclassedemaitresse/'.$idseses ) ?>" ,
+					"type": "POST"
+				},
+
+						//Set column definition initialisation properties.
+				"columnDefs": [
+					{
+						"targets": [ -1 ], //last column
+						"orderable": false, //set not orderable
+					},
+				],
+
+			});
 
 		
 		// Used events
@@ -322,77 +510,164 @@
 	});
 
 </script>
+
+
+<style>
+	.removeRow
+	{
+		background-color: #FF0000;
+		color:#FFFFFF;
+	}
+	.removeRoww
+	{
+		background-color: green;
+		color:#FFFFFF;
+	}
+</style>
 <script type="text/javascript">
-	var popupDiv = document.getElementById("popup_bg");
-	function openpopupMenu() {
-		popupDiv.style.display ="block";
+	$(document).ready(function(){
 
-		
-	}
-	function closePopupMenu() {
+		$('.delete_checkbox').click(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('tr').addClass('removeRow');
+			}
+			else
+			{
+				$(this).closest('tr').removeClass('removeRow');
+			}
+		});
 
-		popupDiv.style.display="none";
-	}
+		$('#delete_all').click(function(){
+			var checkbox = $('.delete_checkbox:checked');
+			if(checkbox.length > 0)
+			{
+				var checkbox_value = [];
+				$(checkbox).each(function(){
+					checkbox_value.push($(this).val());
+				});
+				$.ajax({
+					url:"<?php echo base_url(); ?>Admin/delete_all",
+					method:"POST",
+					data:{checkbox_value:checkbox_value},
+					success:function()
+					{
+						$('.removeRow').fadeOut(1500);
+
+					}
+				})
+			}
+			else
+			{
+				alert('Select atleast one records');
+			}
+		});
+
+	});
+	$(document).ready(function(){
+
+		$('.ajout_checkbox').click(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('tr').addClass('removeRoww');
+			}
+			else
+			{
+				$(this).closest('tr').removeClass('removeRoww');
+			}
+		});
+
+		$('#affectationeleve').click(function(){
+			var checkbox = $('.ajout_checkbox:checked');
+			if(checkbox.length > 0)
+			{
+				var idc=null;
+
+				<?php
+				if(isset($stt)){ ?>
+					idc=<?php echo $stt->id; ?>
+				<?php }else{ ?>
+				idc=null;
+				<?php } ?>
+
+				var checkbox_value = [];
+				$(checkbox).each(function(){
+					checkbox_value.push($(this).val());
+				});
+				$.ajax({
+					url:"<?php echo base_url(); ?>Admin/affectationeleve",
+					method:"POST",
+						data:{checkbox_value:checkbox_value,id:idc},
+					success:function()
+					{
+						$('.removeRow').fadeOut(1500);
+
+					}
+				})
+			}
+			else
+			{
+				alert('Select atleast one records');
+			}
+		});
+
+	});
+
+	$(document).ready(function(){
+
+		$('.ajoutp_checkbox').click(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('tr').addClass('removeRoww');
+			}
+			else
+			{
+				$(this).closest('tr').removeClass('removeRoww');
+			}
+		});
+
+		$('#affectationeleveparent').click(function(){
+			var checkbox = $('.ajoutp_checkbox:checked');
+			if(checkbox.length > 0)
+			{
+				var idc=null;
+
+				<?php
+				if(isset($stt)){ ?>
+					idc=<?php echo $stt->id; ?>
+				<?php }else{ ?>
+				idc=null;
+				<?php } ?>
+
+				var checkbox_value = [];
+				$(checkbox).each(function(){
+					checkbox_value.push($(this).val());
+				});
+				$.ajax({
+					url:"<?php echo base_url(); ?>Admin/affectationeleveparent",
+					method:"POST",
+						data:{checkbox_value:checkbox_value,id:idc},
+					success:function()
+					{
+						$('.removeRow').fadeOut(1500);
+
+					}
+				})
+			}
+			else
+			{
+				alert('Select atleast one records');
+			}
+		});
+
+	});
+
 
 </script>
-<script type="text/javascript">
-$(document).ready(function () {
- 
-        $('#master').on('click', function(e) {
-         if($(this).is(':checked',true))  
-         {
-            $(".sub_chk").prop('checked', true);  
-         } else {  
-            $(".sub_chk").prop('checked',false);  
-         }  
-        });
- 
-        $('.delete_all').on('click', function(e) {
- 
-            var allVals = [];  
-            $(".sub_chk:checked").each(function() {  
-                allVals.push($(this).attr('data-id'));
-            });  
- 
-            if(allVals.length <=0)  
-            {  
-                alert("Please select row.");  
-            }  else {  
- 
-                var check = confirm("Are you sure you want to delete this row?");  
-                if(check == true){  
- 
-                    var join_selected_values = allVals.join(","); 
- 
-                    $.ajax({
-                        url: $(this).attr('Mail/consultation'),
-                        type: 'POST',
-                        data: 'ids='+join_selected_values,
-                        success: function (data) {
 
-                          $(".sub_chk:checked").each(function() {  
-                              $(this).parents("tr").remove();
-                          });
-                          alert("Item Deleted successfully.");
-                        },
-                        error: function (data) {
-                            alert(data.responseText);
-                            alert(data);
-                          alert(url);
-                        }
-                    });
- 
-                  $.each(allVals, function( index, value ) {
-                      $('table tr').filter("[data-row-id='" + value + "']").remove();
-                  });
-                }  
-            }  
-        });
-    });
-</script>
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/table-expo/filesaver.min.js');?>"></script>
 <script src="<?php echo base_url('assets/dashboard/dist/plugins/table-expo/xls.core.min.js');?>"></script>
-<script src="dist/plugins/table-expo/tableexport.js"></script>
+<script src="<?php echo base_url('assets/dashboard/dist/plugins/table-expo/tableexport.js');?>"</script>
 
 <!--Start of Tawk.to Script-->
 
